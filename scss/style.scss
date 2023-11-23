@@ -1,0 +1,169 @@
+@use './components/common/forward' as * ;
+
+@keyframes slide {
+  0%{
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(-100%);
+  }
+  
+}
+
+body{
+  background-color: black;
+}
+
+.slide{
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+}
+
+.slide:before{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 95%;
+  padding: 10px 0;
+  content:"TRADING";
+  font-size: 35px;
+  text-align: center;
+  z-index: 2;
+  background:white;
+}
+
+.rotater{
+  animation: 25s slide infinite linear;
+}
+
+.rotater:hover , .item{
+  animation-play-state: paused;
+}
+
+.item{
+  margin: 0 40px;
+  @include flex-container(row);
+  align-items: center;
+
+  &--spans{
+    padding-left: 15px;
+  }
+
+  & img{
+    display: inline;
+    height: 20px;
+  
+  }
+  
+  & span{
+    display: block;
+    font-size: 25px;
+  }
+  
+  & img:nth-child(2){
+    font-size: 18px;
+  }
+}
+
+.items{
+  @include flex-container(row);
+  white-space: nowrap;
+}
+
+
+
+.entire-wrapper{
+  background-color: black;
+}
+
+$color: #E5E5E5;
+
+section{
+@include auto-margin();
+}
+
+.title{
+  font-size: 56px;
+  color: white;
+  @include flex-container(column);
+  padding: rem(24) 0;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  
+  
+  &_p{
+    font-size: 20px;
+    color: $color;
+    text-align: center;
+    display: block;
+    max-width: min(50%, 612px);
+    padding-left: 28%;
+    padding-right: 27%;
+    margin-bottom: rem(64);
+  }
+  
+}
+
+$text-lg: 38px;
+$text-sm: 19px;
+
+.boxes{
+  color:$color;
+  list-style-type: none;
+  display: block;
+  display: grid;
+  margin: 0 auto;
+  width: 80%;
+  padding: 0;
+  grid-template-columns: repeat(1,1fr);
+  grid-template-rows: repeat(8,1fr);
+
+  @include mq(sm){
+    &{
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(4,1fr);
+    }
+  }
+
+  @include mq(md){
+    &{
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2,1fr);
+    }
+  };
+  
+  li{
+    @include flex-container(column);
+    padding: 5% 0;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(0,0,0,0);
+    border-image: linear-gradient(135deg, #665DCD 0%, #5FA4E6 44.76%, #D2AB67 100%) 1;
+    border-radius: 4px;
+
+  }
+
+
+  li > span{
+    font-size: $text-lg;
+    white-space: nowrap;
+    
+  }
+  
+  span > p{
+    text-align: center;
+    font-size: $text-sm;
+  }
+
+  
+  
+  
+  &:nth-child(1){
+    border-bottom: 1px solid $color;
+  }
+}
+
+
